@@ -1,60 +1,125 @@
-Overview
+# 4-Bit Ripple Carry Adder
 
-This repository contains the design and implementation of a 4-bit Ripple Carry Adder (RCA). The circuit adds two 4-bit binary numbers using a cascade of full adders, where the carry output of each stage is connected to the carry input of the next stage. The primary objective of this experiment is to design the adder and analyze its propagation delay.
+## Objective
 
-Theory
+To design and implement a 4-bit Ripple Carry Adder (RCA) and analyze its propagation delay.
 
-A ripple carry adder consists of multiple full adders connected in series. Each full adder computes the sum and carry for a single bit position. The carry generated at each stage “ripples” through to the next stage, which leads to an overall delay that increases linearly with the number of bits.
+---
 
-Full Adder Equations
+## Overview
 
-Sum (S) = A ⊕ B ⊕ Cin
+This project presents the design and implementation of a 4-bit Ripple Carry Adder. The circuit performs the addition of two 4-bit binary numbers using a cascade of full adders. The carry output of each stage is connected to the carry input of the next stage, forming a sequential carry propagation mechanism.
 
-Carry (Cout) = (A · B) + (Cin · (A ⊕ B))
+---
 
-Design Description
+## Theory
 
-The 4-bit ripple carry adder is constructed using four full adders.
+A Ripple Carry Adder consists of multiple full adders connected in series. Each full adder is responsible for adding corresponding bits of the input numbers along with a carry input.
 
-Inputs:
+The carry generated at each stage propagates to the next stage, which causes a delay known as ripple delay. This delay increases linearly with the number of bits.
 
-A[3:0] – 4-bit input
+---
 
-B[3:0] – 4-bit input
+## Full Adder Equations
 
-Cin – Carry input
+### Sum:
 
-Outputs:
-S[3:0] – 4-bit sum
+```id="6d7kq2"
+S = A XOR B XOR Cin
+```
 
-Cout – Final carry output
+### Carry:
 
-Each full adder takes the carry output from the previous stage as its carry input.
+```id="9w2k1m"
+Cout = (A AND B) OR (Cin AND (A XOR B))
+```
 
-Delay Calculation
+---
 
-The total propagation delay of a ripple carry adder depends on the time taken for the carry to propagate through all full adders.
+## Design Description
 
-If:
+The 4-bit Ripple Carry Adder is constructed using four full adders connected in series.
 
-t_FA = propagation delay of one full adder
+### Inputs
 
-Then the total delay for a 4-bit ripple carry adder is:
+* A[3:0] – 4-bit binary input
+* B[3:0] – 4-bit binary input
+* Cin – Initial carry input
+
+### Outputs
+
+* S[3:0] – 4-bit sum output
+* Cout – Final carry output
+
+Each full adder receives the carry from the previous stage as its input.
+
+---
+
+## Working Principle
+
+1. The least significant bit (LSB) full adder takes Cin as input
+2. Each subsequent full adder takes carry from the previous stage
+3. The carry propagates through all stages until the most significant bit (MSB)
+4. Final output consists of sum bits and final carry
+
+---
+
+## Delay Calculation
+
+The total propagation delay depends on the delay of each full adder.
+
+Let:
+
+* t_FA = propagation delay of one full adder
+
+Then:
+
+```id="6n1kzp"
 Total Delay = 4 × t_FA
-This worst-case delay occurs when the carry propagates through all four stages.
+```
 
-Results
-The circuit correctly performs binary addition for all input combinations.
+This represents the worst-case delay when the carry propagates through all four stages.
 
-The measured/simulated delay confirms that the propagation delay increases linearly with the number of bits, which is a known limitation of ripple carry adders.
+---
 
-Conclusion
-The 4-bit ripple carry adder was successfully designed and implemented. While the design is simple and easy to implement, its main drawback is the increased propagation delay due to carry rippling. This highlights the need for faster adder architectures, such as carry look-ahead adders, in high-speed applications.
+## Results
 
-Files Included
+* The circuit correctly performs binary addition for all input combinations
+* The propagation delay increases linearly with the number of bits
+* The behavior matches theoretical expectations
 
-Design files for the 4-bit ripple carry adder
+---
 
-Simulation and/or test files
+## Advantages
 
-Supporting documentation
+* Simple and easy to design
+* Requires fewer components
+
+---
+
+## Limitations
+
+* High propagation delay due to ripple effect
+* Not suitable for high-speed applications
+
+---
+
+## Applications
+
+* Basic arithmetic operations in digital systems
+* Used in simple processors and ALUs
+* Foundation for understanding advanced adder designs
+
+---
+
+## Conclusion
+
+The 4-bit Ripple Carry Adder was successfully designed and implemented. The results confirm correct functionality and demonstrate that propagation delay increases linearly due to carry propagation. This limitation motivates the use of faster adder designs such as carry look-ahead adders in high-speed systems.
+
+---
+
+## Files Included
+
+* Design files for the 4-bit Ripple Carry Adder
+* Simulation and/or test files
+* Supporting documentation
